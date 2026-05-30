@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>东南亚5国30天</title>
-<meta name="description" content="🇹🇭🇲🇾🇸🇬🇮🇩🇻🇳 深圳→泰国→马来西亚→新加坡→印尼→越南→深圳 · 2026.7.11-8.8">
+<title><!-- REPLACE: Trip Title --></title>
+<meta name="description" content="<!-- REPLACE: Trip Description -->">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -234,278 +234,67 @@ a:hover { text-decoration: underline; }
 
 <script>
 // ╔══════════════════════════════════════════════════════════════╗
-// ║  Trip Data — Southeast Asia 5 Countries, 30 Days            ║
+// ║  REPLACE THIS SECTION — Hotel and Days data                 ║
 // ╚══════════════════════════════════════════════════════════════╝
 
-const HOTEL = { name: '🏨 各城市住宿', lat: 13.756, lng: 100.501 };
+const HOTEL = {"name": "东南亚5国 · 各城市住宿", "lat": 13.756, "lng": 100.501};
 
 const DAYS = [
-  {
-    id: 0, label: '总览', color: '#0071e3', locations: []
-  },
-  // ── D1: 深圳→曼谷 (7/11) ──
-  {
-    id: 1, label: 'D1', date: '7/11 周六', title: '深圳→曼谷', color: '#ff9500',
-    locations: [
-      { name: 'SZX→BKK 飞行', lat: 13.756, lng: 100.501, type: 'transport', time: '—', desc: '深圳→曼谷 直飞航班', gmap: 'Suvarnabhumi+Airport+Bangkok' },
-      { name: '郑王庙日落', lat: 13.743, lng: 100.488, type: 'spot', time: '18:00', desc: 'Wat Arun 黎明寺 · 湄南河畔日落', gmap: 'Wat+Arun+Bangkok' }
-    ]
-  },
-  // ── D2: 曼谷皇宫 (7/12) ──
-  {
-    id: 2, label: 'D2', date: '7/12 周日', title: '曼谷 — 皇宫', color: '#007aff',
-    locations: [
-      { name: '大皇宫+玉佛寺', lat: 13.750, lng: 100.491, type: 'spot', time: '08:00', desc: '曼谷必访 · 玉佛寺与大皇宫', detail: '着装要求：长裤遮盖膝盖、有袖上衣\n门票：500泰铢', gmap: 'Grand+Palace+Bangkok' },
-      { name: '卧佛寺', lat: 13.746, lng: 100.493, type: 'spot', time: '10:00', desc: 'Wat Pho · 泰国最大卧佛', gmap: 'Wat+Pho+Bangkok' },
-      { name: '唐人街', lat: 13.740, lng: 100.507, type: 'food', time: '12:00', desc: 'Yaowarat 曼谷唐人街美食', gmap: 'Yaowarat+Road+Bangkok', pay: { cash: 1 } }
-    ]
-  },
-  // ── D3: 大城府 (7/13) ──
-  {
-    id: 3, label: 'D3', date: '7/13 周一', title: '大城府', color: '#34c759',
-    locations: [
-      { name: '玛哈泰寺(树抱佛头)', lat: 14.353, lng: 100.577, type: 'spot', time: '09:00', desc: 'Ayutthaya 世界遗产 · 树中佛头', gmap: 'Wat+Mahathat+Ayutthaya' }
-    ]
-  },
-  // ── D4: 曼谷 (7/14) ──
-  {
-    id: 4, label: 'D4', date: '7/14 周二', title: '曼谷', color: '#ff3b30',
-    locations: [
-      { name: '空叻玛荣水上市场', lat: 13.745, lng: 100.391, type: 'spot', time: '09:00', desc: 'Khlong Lat Mayom · 本地水上市场', gmap: 'Khlong+Lat+Mayom+Floating+Market' },
-      { name: 'Jim Thompson House', lat: 13.749, lng: 100.530, type: 'spot', time: '14:00', desc: '泰丝大王故居 · 柚木建筑博物馆', gmap: 'Jim+Thompson+House+Bangkok', budget: '200฿' }
-    ]
-  },
-  // ── D5: 曼谷→苏梅 (7/15) ──
-  {
-    id: 5, label: 'D5', date: '7/15 周三', title: '曼谷→苏梅', color: '#af52de',
-    locations: [
-      { name: 'BKK→USM 飞行', lat: 9.512, lng: 100.013, type: 'transport', time: '—', desc: '曼谷→苏梅岛 · 直飞约1h', gmap: 'Samui+Airport' }
-    ]
-  },
-  // ── D6: 安通海洋公园 (7/16) ──
-  {
-    id: 6, label: 'D6', date: '7/16 周四', title: '安通海洋公园', color: '#ff2d55',
-    locations: [
-      { name: 'Ang Thong Marine Park', lat: 9.622, lng: 99.675, type: 'spot', time: '08:00', desc: 'Mu Ko Ang Thong 国家海洋公园 · 皮划艇浮潜', gmap: 'Ang+Thong+Marine+Park' }
-    ]
-  },
-  // ── D7: 苏梅→吉隆坡 (7/17) ──
-  {
-    id: 7, label: 'D7', date: '7/17 周五', title: '苏梅→吉隆坡', color: '#5ac8fa',
-    locations: [
-      { name: 'USM→KUL 飞行', lat: 3.157, lng: 101.712, type: 'transport', time: '—', desc: '苏梅→吉隆坡 直飞', gmap: 'Kuala+Lumpur+International+Airport' },
-      { name: '双子塔夜景', lat: 3.158, lng: 101.712, type: 'spot', time: '20:00', desc: 'Petronas Towers · KLCC夜景', gmap: 'Petronas+Twin+Towers' }
-    ]
-  },
-  // ── D8: 吉隆坡 (7/18) ──
-  {
-    id: 8, label: 'D8', date: '7/18 周六', title: '吉隆坡', color: '#ff9500',
-    locations: [
-      { name: '双子塔', lat: 3.158, lng: 101.712, type: 'spot', time: '09:00', desc: 'Petronas Towers · 登顶观景', gmap: 'Petronas+Twin+Towers', detail: '建议提前网上购票\n营业时间 9:00-21:00', budget: '80RM' },
-      { name: '黑风洞', lat: 3.237, lng: 101.683, type: 'spot', time: '14:00', desc: 'Batu Caves · 彩虹阶梯 + 印度教圣地', gmap: 'Batu+Caves' },
-      { name: '阿罗街美食', lat: 3.145, lng: 101.710, type: 'food', time: '19:00', desc: 'Jalan Alor · 吉隆坡著名美食街', gmap: 'Jalan+Alor+Kuala+Lumpur', pay: { cash: 1 } }
-    ]
-  },
-  // ── D9: 吉隆坡文化 (7/19) ──
-  {
-    id: 9, label: 'D9', date: '7/19 周日', title: '吉隆坡文化', color: '#007aff',
-    locations: [
-      { name: '国家清真寺', lat: 3.141, lng: 101.691, type: 'spot', time: '09:00', desc: 'Masjid Negara · 东南亚最大清真寺', gmap: 'National+Mosque+Kuala+Lumpur' },
-      { name: '独立广场', lat: 3.149, lng: 101.694, type: 'spot', time: '11:00', desc: 'Dataran Merdeka · 历史地标', gmap: 'Merdeka+Square+Kuala+Lumpur' }
-    ]
-  },
-  // ── D10: 吉隆坡→槟城 (7/20) ──
-  {
-    id: 10, label: 'D10', date: '7/20 周一', title: '吉隆坡→槟城', color: '#34c759',
-    locations: [
-      { name: 'KL→Penang 交通', lat: 5.414, lng: 100.329, type: 'transport', time: '—', desc: '吉隆坡→槟城 · 火车/大巴/飞机', gmap: 'Penang+Island' },
-      { name: '乔治市壁画街', lat: 5.413, lng: 100.337, type: 'spot', time: '15:00', desc: 'George Town · 街头壁画艺术', gmap: 'George+Town+Penang+Street+Art' }
-    ]
-  },
-  // ── D11: 槟城 (7/21) ──
-  {
-    id: 11, label: 'D11', date: '7/21 周二', title: '槟城', color: '#ff3b30',
-    locations: [
-      { name: '升旗山', lat: 5.434, lng: 100.280, type: 'spot', time: '09:00', desc: 'Penang Hill · 缆车上山顶俯瞰全景', gmap: 'Penang+Hill' },
-      { name: '极乐寺', lat: 5.398, lng: 100.290, type: 'spot', time: '14:00', desc: 'Kek Lok Si · 东南亚最大佛寺', gmap: 'Kek+Lok+Si+Temple' }
-    ]
-  },
-  // ── D12: 槟城→新加坡 (7/22) ──
-  {
-    id: 12, label: 'D12', date: '7/22 周三', title: '槟城→新加坡', color: '#af52de',
-    locations: [
-      { name: 'PEN→SIN 飞行', lat: 1.352, lng: 103.820, type: 'transport', time: '—', desc: '槟城→新加坡 直飞', gmap: 'Singapore+Changi+Airport' },
-      { name: '滨海湾夜景', lat: 1.282, lng: 103.865, type: 'spot', time: '19:00', desc: 'Marina Bay · 灯光秀+天际线', gmap: 'Marina+Bay+Sands+Singapore' }
-    ]
-  },
-  // ── D13: 新加坡 (7/23) ──
-  {
-    id: 13, label: 'D13', date: '7/23 周四', title: '新加坡', color: '#ff2d55',
-    locations: [
-      { name: '牛车水', lat: 1.283, lng: 103.843, type: 'spot', time: '09:00', desc: 'Chinatown · 新加坡唐人街', gmap: 'Chinatown+Singapore' },
-      { name: '小印度', lat: 1.307, lng: 103.849, type: 'spot', time: '11:00', desc: 'Little India · 印度文化区', gmap: 'Little+India+Singapore' },
-      { name: '麦士威熟食中心', lat: 1.280, lng: 103.844, type: 'food', time: '12:00', desc: 'Maxwell Food Centre · 天天海南鸡饭', gmap: 'Maxwell+Food+Centre+Singapore', pay: { cash: 1 } }
-    ]
-  },
-  // ── D14: 新加坡 (7/24) ──
-  {
-    id: 14, label: 'D14', date: '7/24 周五', title: '新加坡', color: '#5ac8fa',
-    locations: [
-      { name: '滨海湾花园', lat: 1.282, lng: 103.865, type: 'spot', time: '09:00', desc: 'Gardens by the Bay · 花穹+云雾林', gmap: 'Gardens+by+the+Bay+Singapore', budget: 'S$53' }
-    ]
-  },
-  // ── D15: 新加坡→巴厘岛 (7/25) ──
-  {
-    id: 15, label: 'D15', date: '7/25 周六', title: '新加坡→巴厘岛', color: '#ff9500',
-    locations: [
-      { name: 'SIN→DPS 飞行', lat: -8.691, lng: 115.156, type: 'transport', time: '—', desc: '新加坡→巴厘岛 直飞', gmap: 'Ngurah+Rai+International+Airport' },
-      { name: '水明漾区域', lat: -8.691, lng: 115.156, type: 'hotel', time: '—', desc: 'Seminyak · 住宿区域（多家酒店可选）', gmap: 'Seminyak+Bali' }
-    ]
-  },
-  // ── D16: 乌布 (7/26) ──
-  {
-    id: 16, label: 'D16', date: '7/26 周日', title: '乌布', color: '#007aff',
-    locations: [
-      { name: '圣猴森林', lat: -8.518, lng: 115.259, type: 'spot', time: '09:00', desc: 'Monkey Forest Ubud · 巴厘猕猴保护区', gmap: 'Monkey+Forest+Ubud+Bali' },
-      { name: '乌布皇宫', lat: -8.507, lng: 115.262, type: 'spot', time: '11:00', desc: 'Ubud Palace · 皇室建筑', gmap: 'Ubud+Palace+Bali' }
-    ]
-  },
-  // ── D17: 乌布 (7/27) ──
-  {
-    id: 17, label: 'D17', date: '7/27 周一', title: '乌布', color: '#34c759',
-    locations: [
-      { name: '德格拉朗梯田', lat: -8.424, lng: 115.279, type: 'spot', time: '08:00', desc: 'Tegalalang Rice Terrace · 网红梯田', gmap: 'Tegalalang+Rice+Terrace' },
-      { name: '圣泉寺', lat: -8.415, lng: 115.315, type: 'spot', time: '14:00', desc: 'Tirta Empul · 净化仪式圣泉', gmap: 'Tirta+Empul+Temple' }
-    ]
-  },
-  // ── D18: 巴厘岛东部 (7/28) ──
-  {
-    id: 18, label: 'D18', date: '7/28 周二', title: '巴厘岛东部', color: '#ff3b30',
-    locations: [
-      { name: '百沙基母庙', lat: -8.375, lng: 115.449, type: 'spot', time: '09:00', desc: 'Besakih Temple · 巴厘岛之母庙', gmap: 'Besakih+Temple+Bali' },
-      { name: '蒂尔塔冈加', lat: -8.409, lng: 115.588, type: 'spot', time: '14:00', desc: 'Tirta Gangga · 水上宫殿', gmap: 'Tirta+Gangga+Bali' }
-    ]
-  },
-  // ── D19: 巴厘岛南部 (7/29) ──
-  {
-    id: 19, label: 'D19', date: '7/29 周三', title: '巴厘岛南部', color: '#af52de',
-    locations: [
-      { name: '乌鲁瓦图寺', lat: -8.829, lng: 115.085, type: 'spot', time: '16:00', desc: 'Uluwatu Temple · 悬崖海景寺', gmap: 'Uluwatu+Temple+Bali' },
-      { name: '凯卡克火舞', lat: -8.829, lng: 115.085, type: 'spot', time: '18:00', desc: 'Kecak Dance · 日落火舞表演', gmap: 'Uluwatu+Kecak+Dance' },
-      { name: 'Jimbaran 海鲜', lat: -8.779, lng: 115.165, type: 'food', time: '19:30', desc: '金巴兰海滩海鲜烧烤', gmap: 'Jimbaran+Bay+Seafood+Bali', pay: { cash: 1, card: 1 } }
-    ]
-  },
-  // ── D20: 努沙佩尼达 (7/30) ──
-  {
-    id: 20, label: 'D20', date: '7/30 周四', title: '努沙佩尼达', color: '#ff2d55',
-    locations: [
-      { name: 'Kelingking Beach', lat: -8.741, lng: 115.533, type: 'spot', time: '09:00', desc: '精灵沙滩 · 恐龙湾悬崖海景', gmap: 'Kelingking+Beach+Nusa+Penida' }
-    ]
-  },
-  // ── D21: 巴厘→胡志明 (7/31) ──
-  {
-    id: 21, label: 'D21', date: '7/31 周五', title: '巴厘→胡志明', color: '#5ac8fa',
-    locations: [
-      { name: 'DPS→SGN 飞行', lat: 10.823, lng: 106.630, type: 'transport', time: '—', desc: '巴厘岛→胡志明市 直飞', gmap: 'Tan+Son+Nhat+International+Airport' }
-    ]
-  },
-  // ── D22: 胡志明 (8/1) ──
-  {
-    id: 22, label: 'D22', date: '8/1 周六', title: '胡志明', color: '#ff9500',
-    locations: [
-      { name: '战争遗迹博物馆', lat: 10.780, lng: 106.692, type: 'spot', time: '09:00', desc: 'War Remnants Museum · 越战历史', gmap: 'War+Remnants+Museum+Ho+Chi+Minh' },
-      { name: '古芝地道', lat: 11.063, lng: 106.508, type: 'spot', time: '13:00', desc: 'Cu Chi Tunnels · 越战地道遗址', gmap: 'Cu+Chi+Tunnels' }
-    ]
-  },
-  // ── D23: 胡志明→会安 (8/2) ──
-  {
-    id: 23, label: 'D23', date: '8/2 周日', title: '胡志明→会安', color: '#007aff',
-    locations: [
-      { name: 'SGN→DAD 飞行', lat: 16.054, lng: 108.202, type: 'transport', time: '—', desc: '胡志明→岘港 飞行', gmap: 'Da+Nang+International+Airport' },
-      { name: '会安古镇灯笼', lat: 15.880, lng: 108.326, type: 'spot', time: '18:00', desc: 'Hoi An Ancient Town · 灯笼夜景', gmap: 'Hoi+An+Ancient+Town' }
-    ]
-  },
-  // ── D24: 会安 (8/3) ──
-  {
-    id: 24, label: 'D24', date: '8/3 周一', title: '会安', color: '#34c759',
-    locations: [
-      { name: '会安古城', lat: 15.880, lng: 108.326, type: 'spot', time: '09:00', desc: 'Hoi An · 世界文化遗产古镇', gmap: 'Hoi+An+Ancient+Town' },
-      { name: 'Morning Glory', lat: 15.877, lng: 108.327, type: 'food', time: '19:00', desc: '会安名店 · 白玫瑰/高楼面', gmap: 'Morning+Glory+Hoi+An' }
-    ]
-  },
-  // ── D25: 会安→河内 (8/4) ──
-  {
-    id: 25, label: 'D25', date: '8/4 周二', title: '会安→河内', color: '#ff3b30',
-    locations: [
-      { name: 'DAD→HAN 飞行', lat: 21.028, lng: 105.854, type: 'transport', time: '—', desc: '岘港→河内 飞行', gmap: 'Noi+Bai+International+Airport' },
-      { name: '还剑湖', lat: 21.029, lng: 105.853, type: 'spot', time: '18:00', desc: 'Hoan Kiem Lake · 河内心脏', gmap: 'Hoan+Kiem+Lake+Hanoi' }
-    ]
-  },
-  // ── D26: 下龙湾 (8/5) ──
-  {
-    id: 26, label: 'D26', date: '8/5 周三', title: '下龙湾', color: '#af52de',
-    locations: [
-      { name: '下龙湾游船', lat: 20.910, lng: 107.020, type: 'spot', time: '08:00', desc: 'Ha Long Bay · 世界自然奇观乘船游', gmap: 'Ha+Long+Bay' }
-    ]
-  },
-  // ── D27: 宁平 (8/6) ──
-  {
-    id: 27, label: 'D27', date: '8/6 周四', title: '宁平', color: '#ff2d55',
-    locations: [
-      { name: '长安划船', lat: 20.227, lng: 105.897, type: 'spot', time: '09:00', desc: 'Trang An · 陆地下龙湾 · 划船探洞', gmap: 'Trang+An+Landscape+Complex' }
-    ]
-  },
-  // ── D28: 河内 (8/7) ──
-  {
-    id: 28, label: 'D28', date: '8/7 周五', title: '河内', color: '#5ac8fa',
-    locations: [
-      { name: '文庙', lat: 21.027, lng: 105.836, type: 'spot', time: '09:00', desc: 'Temple of Literature · 越南第一所大学', gmap: 'Temple+of+Literature+Hanoi' },
-      { name: '蛋咖啡 Giang Cafe', lat: 21.034, lng: 105.851, type: 'drink', time: '15:00', desc: 'Giang Cafe · 越南特色蛋咖啡', gmap: 'Giang+Cafe+Hanoi', pay: { cash: 1 } }
-    ]
-  },
-  // ── D29: 河内→深圳 (8/8) ──
-  {
-    id: 29, label: 'D29', date: '8/8 周六', title: '河内→深圳', color: '#ff9500',
-    locations: [
-      { name: 'HAN→SZX 飞行', lat: 21.028, lng: 105.854, type: 'transport', time: '14:00', desc: '河内→深圳 直飞 · 旅行结束', gmap: 'Noi+Bai+International+Airport' }
-    ]
-  }
+  { id: 0, label: '总览', color: '#0071e3', locations: [] },
+  // { id: 1, label: 'D1 Label', date: '日期', title: '标题', color: '#ff9500', locations: [...] }
+  //
+  // Each location:
+  // {
+  //   name: 'Name', lat: 35.68, lng: 139.77,
+  //   type: 'food',           // food | spot | drink | hotel | transport
+  //   time: '18:30',          // or '—' for alternatives
+  //   desc: 'Description',
+  //   budget: '¥3,000',       // optional
+  //   detail: 'Details',      // optional, \n for newlines
+  //   pay: { cash: 1, card: 1, suica: 0.5 }, // optional, 1=yes 0.5=maybe
+  //   xhs: 'https://...',     // optional 小红书 link
+  //   xhsKeyword: '搜索词',    // optional, overrides name for XHS search
+  //   dianping: 'https://...',     // optional 大众点评 link (presence enables button)
+  //   dianpingKeyword: '搜索词',   // optional, overrides name for 大众点评 search
+  //   reserve: 'https://...', // optional reservation link
+  //   gmap: 'Google+Maps+Search+Query'
+  // }
 ];
 
 // ╔══════════════════════════════════════════════════════════════╗
-// ║  Overview tab content                                       ║
+// ║  REPLACE THIS SECTION — Overview tab content                ║
 // ╚══════════════════════════════════════════════════════════════╝
 
 function overviewContent() {
-  return `
-<div class="hero"><h1>东南亚5国30天</h1><p class="subtitle">🇹🇭🇲🇾🇸🇬🇮🇩🇻🇳 · 2026.7.11-8.8</p></div>
-<div class="route-bar"><strong>路线：</strong>深圳 → 泰国(曼谷+苏梅) → 马来西亚(KL+槟城) → 新加坡 → 印尼(巴厘岛) → 越南(胡志明+会安+河内) → 深圳</div>
-<div class="info-grid">
-  <div class="info-card"><div class="label">🏨 酒店</div><div class="value">多家<br><span style="font-size:13px;font-weight:400;color:var(--text-secondary)">各城市分别预订</span></div></div>
-  <div class="info-card"><div class="label">✈️ 航班</div><div class="value">10段<br><span style="font-size:13px;font-weight:400;color:var(--text-secondary)">跨国+国内飞</span></div></div>
-  <div class="info-card"><div class="label">💰 预估费用</div><div class="value">¥18K-23K<br><span style="font-size:13px;font-weight:400;color:var(--text-secondary)">含机酒食宿玩乐</span></div></div>
-  <div class="info-card"><div class="label">🛂 签证</div><div class="value">均免签/落地签<br><span style="font-size:13px;font-weight:400;color:var(--text-secondary)">泰马新印尼越南</span></div></div>
-</div>
-<div class="section-head">📋 行程总览</div>
-<div class="day-list">${DAYS.slice(1).map(d=>\x60<div class="card" onclick="go(\${d.id})"><div class="name"><span class="dot" style="background:\${d.color}"></span>\${d.label} · \${d.title}</div><div class="desc">\${d.date}</div></div>\x60).join('')}</div>
-<div class="section-head">💳 支付提醒</div>
-<div class="pay-summary">
-  <h4>💰 现金为主，刷卡为辅</h4>
-  <p>🇹🇭 <b>泰国</b>：现金为主，7-11/商场可刷卡</p>
-  <p>🇲🇾 <b>马来西亚</b>：现金+刷卡均可</p>
-  <p>🇸🇬 <b>新加坡</b>：刷卡/扫码最方便，无需太多现金</p>
-  <p>🇮🇩 <b>印尼(巴厘岛)</b>：现金为主，部分餐厅可刷卡</p>
-  <p>🇻🇳 <b>越南</b>：现金为主，大额消费可刷卡</p>
-  <p><span class="ok-text">✅ 建议：</span>出发前换少量泰铢+美元，各国ATM可取现</p>
-</div>
-<div class="section-head">🎨 图例</div>
-<div class="legend">
-  <div class="legend-item"><div class="legend-dot" style="background:var(--tint-red)"></div>餐厅/美食</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--tint-blue)"></div>景点</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--tint-purple)"></div>饮品/酒吧</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--tint-orange)"></div>酒店</div>
-  <div class="legend-item"><div class="legend-dot" style="background:var(--text-tertiary)"></div>交通</div>
-</div>`;
+  return `<div class="hero"><h1>&#x1F30F; &#x4E1C;&#x5357;&#x4E9A;5&#x56FD;30&#x5929;</h1><p class="subtitle">&#x6DF1;&#x5733;&#x2192;&#x6CF0;&#x56FD;&#x2192;&#x9A6C;&#x6765;&#x2192;&#x65B0;&#x52A0;&#x5761;&#x2192;&#x5DF4;&#x538E;&#x5C9B;&#x2192;&#x8D8A;&#x5357;&#x2192;&#x6DF1;&#x5733; &middot; 2026.7.11-8.8</p></div><div class="route-bar"><strong>&#x8DEF;&#x7EBF;&#xFF1A;</strong>&#x6DF1;&#x5733; &#x2192; &#x6CF0;&#x56FD;(&#x66FC;&#x8C37;+&#x82CF;&#x6885;) &#x2192; &#x9A6C;&#x6765;&#x897F;&#x4E9A;(KL+&#x6A7F;&#x57CE;) &#x2192; &#x65B0;&#x52A0;&#x5761; &#x2192; &#x5370;&#x5C3C;(&#x5DF4;&#x538E;&#x5C9B;) &#x2192; &#x8D8A;&#x5357;(&#x80E1;&#x5FD7;&#x660E;+&#x4F1A;&#x5B89;+&#x6CB3;&#x5185;) &#x2192; &#x6DF1;&#x5733;</div><div class="info-grid"><div class="info-card"><div class="label">&#x2708;&#xFE0F; &#x673A;&#x7968;</div><div class="value">10&#x6BB5; &#xFFE5;8,900</div></div><div class="info-card"><div class="label">&#x1F3E8; &#x4F4F;&#x5BBF;</div><div class="value">&#xFFE5;10,000</div></div><div class="info-card"><div class="label">&#x1F4B0; &#x5408;&#x8BA1;</div><div class="value">&#xFFE5;25,900</div></div><div class="info-card"><div class="label">&#x1F6C2; &#x7B7E;&#x8BC1;</div><div class="value">&#x5168;&#x514D;&#x7B7E;/&#x843D;&#x5730;&#x7B7E;</div></div></div><div class="section-head">&#x1F4CB; &#x884C;&#x7A0B;&#x603B;&#x89C8;</div><div class="day-list"><div class="card" onclick="go(1)"><div class="name"><span class="dot" style="background:#ff9500"></span>D1 &middot; 深圳→曼谷</div><div class="desc">7/11 周六</div></div>
+<div class="card" onclick="go(2)"><div class="name"><span class="dot" style="background:#007aff"></span>D2 &middot; 曼谷皇宫</div><div class="desc">7/12 周日</div></div>
+<div class="card" onclick="go(3)"><div class="name"><span class="dot" style="background:#34c759"></span>D3 &middot; 大城府</div><div class="desc">7/13 周一</div></div>
+<div class="card" onclick="go(4)"><div class="name"><span class="dot" style="background:#ff3b30"></span>D4 &middot; 曼谷逛吃</div><div class="desc">7/14 周二</div></div>
+<div class="card" onclick="go(5)"><div class="name"><span class="dot" style="background:#af52de"></span>D5 &middot; 曼谷→苏梅</div><div class="desc">7/15 周三</div></div>
+<div class="card" onclick="go(6)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D6 &middot; 安通海洋公园</div><div class="desc">7/16 周四</div></div>
+<div class="card" onclick="go(7)"><div class="name"><span class="dot" style="background:#5ac8fa"></span>D7 &middot; 苏梅→吉隆坡</div><div class="desc">7/17 周五</div></div>
+<div class="card" onclick="go(8)"><div class="name"><span class="dot" style="background:#ff9500"></span>D8 &middot; 吉隆坡</div><div class="desc">7/18 周六</div></div>
+<div class="card" onclick="go(9)"><div class="name"><span class="dot" style="background:#007aff"></span>D9 &middot; 吉隆坡文化</div><div class="desc">7/19 周日</div></div>
+<div class="card" onclick="go(10)"><div class="name"><span class="dot" style="background:#34c759"></span>D10 &middot; KL→槟城</div><div class="desc">7/20 周一</div></div>
+<div class="card" onclick="go(11)"><div class="name"><span class="dot" style="background:#ff3b30"></span>D11 &middot; 槟城</div><div class="desc">7/21 周二</div></div>
+<div class="card" onclick="go(12)"><div class="name"><span class="dot" style="background:#af52de"></span>D12 &middot; 槟城→新加坡</div><div class="desc">7/22 周三</div></div>
+<div class="card" onclick="go(13)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D13 &middot; 新加坡</div><div class="desc">7/23 周四</div></div>
+<div class="card" onclick="go(14)"><div class="name"><span class="dot" style="background:#5ac8fa"></span>D14 &middot; 新加坡</div><div class="desc">7/24 周五</div></div>
+<div class="card" onclick="go(15)"><div class="name"><span class="dot" style="background:#ff9500"></span>D15 &middot; 新加坡→巴厘岛</div><div class="desc">7/25 周六</div></div>
+<div class="card" onclick="go(16)"><div class="name"><span class="dot" style="background:#007aff"></span>D16 &middot; 乌布</div><div class="desc">7/26 周日</div></div>
+<div class="card" onclick="go(17)"><div class="name"><span class="dot" style="background:#34c759"></span>D17 &middot; 乌布周边</div><div class="desc">7/27 周一</div></div>
+<div class="card" onclick="go(18)"><div class="name"><span class="dot" style="background:#ff3b30"></span>D18 &middot; 巴厘岛东部</div><div class="desc">7/28 周二</div></div>
+<div class="card" onclick="go(19)"><div class="name"><span class="dot" style="background:#af52de"></span>D19 &middot; 巴厘岛南部</div><div class="desc">7/29 周三</div></div>
+<div class="card" onclick="go(20)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D20 &middot; 努沙佩尼达</div><div class="desc">7/30 周四</div></div>
+<div class="card" onclick="go(21)"><div class="name"><span class="dot" style="background:#5ac8fa"></span>D21 &middot; 巴厘岛→胡志明</div><div class="desc">7/31 周五</div></div>
+<div class="card" onclick="go(22)"><div class="name"><span class="dot" style="background:#ff9500"></span>D22 &middot; 胡志明</div><div class="desc">8/1 周六</div></div>
+<div class="card" onclick="go(23)"><div class="name"><span class="dot" style="background:#007aff"></span>D23 &middot; 胡志明→会安</div><div class="desc">8/2 周日</div></div>
+<div class="card" onclick="go(24)"><div class="name"><span class="dot" style="background:#34c759"></span>D24 &middot; 会安古城</div><div class="desc">8/3 周一</div></div>
+<div class="card" onclick="go(25)"><div class="name"><span class="dot" style="background:#ff3b30"></span>D25 &middot; 会安→河内</div><div class="desc">8/4 周二</div></div>
+<div class="card" onclick="go(26)"><div class="name"><span class="dot" style="background:#af52de"></span>D26 &middot; 下龙湾</div><div class="desc">8/5 周三</div></div>
+<div class="card" onclick="go(27)"><div class="name"><span class="dot" style="background:#ff2d55"></span>D27 &middot; 宁平</div><div class="desc">8/6 周四</div></div>
+<div class="card" onclick="go(28)"><div class="name"><span class="dot" style="background:#5ac8fa"></span>D28 &middot; 河内</div><div class="desc">8/7 周五</div></div>
+<div class="card" onclick="go(29)"><div class="name"><span class="dot" style="background:#ff9500"></span>D29 &middot; 河内→深圳</div><div class="desc">8/8 周六</div></div></div><div class="section-head">&#x1F4B3; &#x652F;&#x4ED8;&#x63D0;&#x9192;</div><div class="pay-summary"><p>&#x1F1F9;&#x1F1ED; &#x6CF0;&#x56FD;&#xFF1A;&#x73B0;&#x91D1;&#x4E3B;&#xFF0C;7-11/&#x5546;&#x573A;&#x53EF;&#x5237;&#x5361;</p><p>&#x1F1F2;&#x1F1FE; &#x9A6C;&#x6765;&#x897F;&#x4E9A;&#xFF1A;&#x73B0;&#x91D1;+&#x5237;&#x5361;&#x5747;&#x53EF;</p><p>&#x1F1F8;&#x1F1EC; &#x65B0;&#x52A0;&#x5761;&#xFF1A;&#x5237;&#x5361;&#x6700;&#x65B9;&#x4FBF;</p><p>&#x1F1EE;&#x1F1E9; &#x5DF4;&#x538E;&#x5C9B;&#xFF1A;&#x73B0;&#x91D1;&#x5FC5;&#x5907;&#xFF0C;&#x90E8;&#x5206;&#x53EF;&#x5237;&#x5361;</p><p>&#x1F1FB;&#x1F1F3; &#x8D8A;&#x5357;&#xFF1A;&#x73B0;&#x91D1;&#x4E3B;</p></div><div class="section-head">&#x1F3A8; &#x56FE;&#x4F8B;</div><div class="legend"><div class="legend-item"><div class="legend-dot" style="background:var(--tint-red)"></div>&#x7F8E;&#x98DF;</div><div class="legend-item"><div class="legend-dot" style="background:var(--tint-blue)"></div>&#x666F;&#x70B9;</div><div class="legend-item"><div class="legend-dot" style="background:var(--tint-purple)"></div>&#x996E;&#x54C1;</div><div class="legend-item"><div class="legend-dot" style="background:var(--tint-orange)"></div>&#x9152;&#x5E97;</div><div class="legend-item"><div class="legend-dot" style="background:var(--text-tertiary)"></div>&#x4EA4;&#x901A;</div></div>`;
 }
 
 // ╔══════════════════════════════════════════════════════════════╗
@@ -566,7 +355,7 @@ function showDay(idx) {
     if(pts.length) map.fitBounds(pts, {padding:[30,30]});
     DAYS.slice(1).forEach(d => {
       d.locations.filter(l=>l.time!=='—').forEach(l => {
-        const m = L.circleMarker([l.lat,l.lng], { radius:4, fillColor:d.color, color:'#fff', weight:1.5, fillOpacity:.9 }).addTo(map).bindPopup(`<b>${l.name}</b><br><span style="color:#86868b">${d.label} · ${d.title}</span>`);
+        const m = L.circleMarker([l.lat,l.lng], { radius:4, fillColor:d.color, color:'#fff', weight:1.5, fillOpacity:.9 }).addTo(map).bindPopup(`<b>${l.name}</b><br><span style="color:#86868b">${d.label}</span>`);
         markers.push(m);
       });
     });
